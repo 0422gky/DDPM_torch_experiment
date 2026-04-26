@@ -261,7 +261,7 @@ class ContinuousTimeGaussianDiffusion(nn.Module):
 
         if self.min_snr_loss_weight:
             snr = log_snr.exp()
-            loss_weight = snr.clamp(min = self.min_snr_gamma) / snr
+            loss_weight = snr.clamp(max = self.min_snr_gamma) / snr
             losses = losses * loss_weight
 
         return losses.mean()
