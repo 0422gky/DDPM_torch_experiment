@@ -523,7 +523,7 @@ class GaussianDiffusion(Module):
         betas = beta_schedule_fn(timesteps, **schedule_fn_kwargs)
 
         alphas = 1. - betas
-        alphas_cumprod = torch.cumprod(alphas, dim=0)
+        alphas_cumprod = torch.cumprod(alphas, dim=0) # torch.cumprod returns the cumulative product of a tensor
         alphas_cumprod_prev = F.pad(alphas_cumprod[:-1], (1, 0), value = 1.)
 
         timesteps, = betas.shape
